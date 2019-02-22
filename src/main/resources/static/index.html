@@ -27,11 +27,13 @@
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" placeholder="World">
             </div>
-            <button id="invoke" type="submit" class="btn btn-success">Invoke</button>
+            <button id="invoke_unsecure" type="submit" class="btn btn-success">Invoke UnSecured</button>
+            <button id="invoke_secure" type="submit" class="btn btn-success">Invoke Secured</button>
         </form>
 
         <p class="lead">Result:</p>
-        <pre><code id="greeting-result">Invoke the service to see the result.</code></pre>
+        <pre><code id="greeting-result-unsecure">Invoke the service to see the result from unsecured end point.</code></pre>
+        <pre><code id="greeting-result-secure">Invoke the service to see the result from secured end point.</code></pre>
     </div>
 </div>
 
@@ -42,10 +44,17 @@
 
 <script>
   $(document).ready(function () {
-    $("#invoke").click(function (e) {
+    $("#invoke_unsecure").click(function (e) {
       var n = $("#name").val() || "World";
       $.getJSON("/api/greeting?name=" + n, function (res) {
-        $("#greeting-result").text(JSON.stringify(res));
+        $("#greeting-result-unsecure").text(JSON.stringify(res));
+      });
+      e.preventDefault();
+    });
+      $("#invoke_secure").click(function (e) {
+      var n = $("#name").val() || "World";
+      $.getJSON("/api/greeting?name=" + n, function (res) {
+        $("#greeting-result-secure").text(JSON.stringify(res));
       });
       e.preventDefault();
     });
