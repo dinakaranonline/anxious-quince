@@ -20,6 +20,8 @@ public class Greeting {
 
     public static final String FORMAT = "Hello, %s!";
 
+    public static final String FORMAT_UNSECURED = "Unsecured Hello, %s!";
+
     private final String content;
 
     public Greeting() {
